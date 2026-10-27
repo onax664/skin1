@@ -20,9 +20,15 @@ jobs:
         run: |
           cat onax-*.bin > site.zip
           unzip -q site.zip -d out
+      - name: Ghi de file sua o thu muc goc
+        run: |
+          for f in *.js *.html *.css; do
+            if [ -f "$f" ]; then cp "$f" out/botmodff-main/; fi
+          done
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out/botmodff-main
       - id: deployment
         uses: actions/deploy-pages@v4
+        
